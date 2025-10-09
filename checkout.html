@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Gadget Kadai</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .checkout-container {
+      background: white;
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #222;
+    }
+
+    .product-summary {
+      margin: 20px 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-container">
+    <h2>Checkout</h2>
+
+    <div class="product-summary" id="product-summary">
+      <p><strong>Product:</strong> <span id="product-name"></span></p>
+      <p><strong>Price:</strong> <span id="product-price"></span></p>
+    </div>
+
+    <form id="payment-form">
+      <label>Full Name</label>
+      <input type="text" placeholder="Enter your name" required>
+
+      <label>Card Number</label>
+      <input type="text" maxlength="16" placeholder="1111 2222 3333 4444" required>
+
+      <label>Expiry Date</label>
+      <input type="text" maxlength="5" placeholder="MM/YY" required>
+
+      <label>CVV</label>
+      <input type="text" maxlength="3" placeholder="123" required>
+
+      <button type="submit">Pay Now</button>
+    </form>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <script>
+    // ✅ Display product details from the link (URL)
+    const params = new URLSearchParams(window.location.search);
+    const productName = params.get('name');
+    const productPrice = params.get('price');
+
+    document.getElementById('product-name').textContent = productName || 'Unknown Product';
+    document.getElementById('product-price').textContent = productPrice || '₹0.00';
+
+    // ✅ Simulate payment (no backend)
+    document.getElementById('payment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      alert('✅ Payment Successful! Thank you for your purchase 💙');
+      window.location.href = 'index.html'; // redirect back home
+    });
+  </script>
+</body>
+</html>
